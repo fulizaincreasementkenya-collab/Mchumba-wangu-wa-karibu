@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kericho Dating - Connecting Hearts in the Green Highlands</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #059669;
+            --primary-dark: #047857;
+            --primary-light: #d1fae5;
+            --accent: #e11d48;
+            --text-dark: #1f2937;
+            --text-muted: #4b5563;
+            --bg-light: #f3f4f6;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.5;
+            padding-bottom: 40px;
+        }
+
+        .top-banner {
+            background: #000;
+            color: #fff;
+            text-align: center;
+            padding: 8px 12px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .top-banner span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .top-banner i {
+            color: #10b981;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-align: center;
+            padding: 35px 20px 25px 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .header-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: #a7f3d0;
+        }
+
+        header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 15px;
+            opacity: 0.9;
+            font-style: italic;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .active-counter {
+            margin-top: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,0,0,0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #34d399;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(52, 211, 153, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+        }
+
+        .how-it-works {
+            max-width: 800px;
+            margin: 20px auto 10px auto;
+            padding: 0 15px;
+        }
+
+        .how-it-works-box {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .how-it-works h2 {
+            font-size: 16px;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .how-it-works p.subtitle {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px auto;
+            font-size: 18px;
+        }
+
+        .step h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .step p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .fee-highlight {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .profile-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .img-container {
+            position: relative;
+            width: 100%;
+            padding-top: 120%;
+            background: #e5e7eb;
+            overflow: hidden;
+        }
+
+        .profile-card img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .badge-verified {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(16, 185, 129, 0.9);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            backdrop-filter: blur(4px);
+        }
+
+        .badge-location {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            backdrop-filter: blur(4px);
+        }
+
+        .card-body {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .profile-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .profile-age {
+            font-weight: normal;
+            color: var(--text-muted);
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .status-online {
+            background-color: #10b981;
+        }
+
+        .status-offline {
+            background-color: #9ca3af;
+        }
+
+        .profile-bio {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .profile-details {
+            border-top: 1px solid #f3f4f6;
+            padding-top: 10px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .btn-connect {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+
+        .btn-connect:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Recent matches ticker */
+        .recent-section {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+
+        .recent-section h2 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-dark);
+        }
+
+        .matches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 10px;
+        }
+
+        .match-card {
+            background: white;
+            padding: 8px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 11px;
+            box-shadow: var(--shadow);
+        }
+
+        .match-card img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 4px;
+        }
+
+        .match-name {
+            font-weight: bold;
+            display: block;
+        }
+
+        .match-time {
+            color: var(--text-muted);
+            font-size: 10px;
+        }
+
+        footer {
+            background: #1f2937;
+            color: #9ca3af;
+            text-align: center;
+            padding: 30px 15px 20px 15px;
+            margin-top: 40px;
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: #fff;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-content p {
+            margin-bottom: 10px;
+        }
+
+        .footer-notice {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px dashed rgba(255,255,255,0.1);
+        }
+
+        .footer-notice h4 {
+            color: #fff;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        /* Popup Notification */
+        .notification-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            transform: translateY(150%);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #e5e7eb;
+            max-width: 300px;
+        }
+
+        .notification-toast.show {
+            transform: translateY(0);
+        }
+
+        .toast-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .toast-text {
+            font-size: 12px;
+            line-height: 1.2;
+        }
+
+        .toast-text p {
+            margin: 0;
+            color: var(--text-dark);
+        }
+
+        .toast-text span {
+            color: var(--text-muted);
+            font-size: 10px;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-card {
+            background: white;
+            border-radius: 16px;
+            max-width: 400px;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            animation: modalUp 0.3s ease-out forwards;
+            position: relative;
+        }
+
+        @keyframes modalUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-body {
+            padding: 0;
+        }
+
+        .modal-img-container {
+            position: relative;
+            height: 220px;
+            width: 100%;
+            background: #e5e7eb;
+        }
+
+        .modal-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-img-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+        }
+
+        .modal-content-details {
+            padding: 20px;
+        }
+
+        .modal-bio-full {
+            font-size: 14px;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .modal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            background: var(--bg-light);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 12px;
+        }
+
+        .modal-grid-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-grid-label {
+            color: var(--text-muted);
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
+        .modal-grid-value {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .payment-box {
+            background: #fef2f2;
+            border: 1px dashed var(--accent);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .payment-box-title {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .payment-box-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .btn-unlock {
+            background: #25d366;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            transition: background 0.2s;
+        }
+
+        .btn-unlock:hover {
+            background: #1da851;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-banner">
+        <span><i class="fas fa-user-check"></i> ID VERIFIED PROFILES</span>
+        <span><i class="fas fa-shield-alt"></i> SECURE MPESA PAYMENTS</span>
+        <span><i class="fas fa-lock"></i> 100% DISCREET</span>
+    </div>
+
+    <header>
+        <div class="header-icon">
+            <i class="fas fa-heart"></i>
+        </div>
+        <h1>Kericho Dating</h1>
+        <p>"Connecting hearts in the Green Highlands."</p>
+        
+        <div class="active-counter">
+            <span class="pulse-dot"></span>
+            <span id="active-men">142</span> Men browsing right now
+        </div>
+    </header>
+
+    <section class="how-it-works">
+        <div class="how-it-works-box">
+            <h2>How It Works</h2>
+            <p class="subtitle">Follow our secure 3-step verification process</p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-search"></i></div>
+                    <h3>1. Browse Profiles</h3>
+                    <p>All ladies are 100% verified with ID checks to ensure they are real residents of Kericho.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>2. Commitment Fee</h3>
+                    <p>Pay a small service fee of <span class="fee-highlight">Ksh 200</span> via M-PESA to unlock contact.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><i class="fab fa-whatsapp"></i></div>
+                    <h3>3. Direct Connection</h3>
+                    <p>Get her number instantly. No middleman. Start chatting and plan your meet-up.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main id="profiles-container">
+        <!-- Profiles rendered by JS -->
+    </main>
+
+    <section class="recent-section">
+        <h2>Recent Matches</h2>
+        <div class="matches-grid" id="matches-grid">
+            <!-- Recent matches rendered by JS -->
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-notice">
+                <h4>WANT TO BE LISTED?</h4>
+                <p>Are you a kalenjin lady looking for a serious relationship? Send details to: <strong>kerichodating@gmail.com</strong></p>
+                <div style="font-size: 11px; margin-top: 5px;">
+                    <span style="margin-right: 10px;"><i class="fas fa-shield-alt"></i> Privacy Guaranteed</span>
+                    <span><i class="fas fa-id-card"></i> ID Required</span>
+                </div>
+            </div>
+            <p>&copy; 2026 KERICHO DATING SERVICES</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="notification-toast" id="toast">
+        <div class="toast-avatar" id="toast-icon"><i class="fas fa-bell"></i></div>
+        <div class="toast-text">
+            <p id="toast-msg">Someone connected!</p>
+            <span id="toast-time">Just Now</span>
+        </div>
+    </div>
+
+    <!-- Profile Detail Modal -->
+    <div class="modal-overlay" id="profile-modal">
+        <div class="modal-card">
+            <button class="modal-close" id="modal-close"><i class="fas fa-times"></i></button>
+            <div class="modal-body">
+                <div class="modal-img-container">
+                    <img id="modal-img" src="" alt="">
+                    <div class="modal-img-overlay">
+                        <h2 id="modal-name-age">Name, 24</h2>
+                        <div style="font-size: 12px; display: flex; align-items: center; gap: 5px;">
+                            <i class="fas fa-map-marker-alt" style="color: #ef4444;"></i> <span id="modal-location">Kericho</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-content-details">
+                    <p class="modal-bio-full" id="modal-bio">Bio goes here...</p>
+
+                    <div class="modal-grid">
+                        <div class="modal-grid-item">
+                            <span class="modal-grid-label">Occupation</span>
+                            <span class="modal-grid-value" id="modal-occupation">-</span>
+                        </div>
+                        <div class="modal-grid-item">
+                            <span class="modal-grid-label">Looking For</span>
+                            <span class="modal-grid-value" id="modal-looking">-</span>
+                        </div>
+                        <div class="modal-grid-item">
+                            <span class="modal-grid-label">Status</span>
+                            <span class="modal-grid-value" id="modal-status">-</span>
+                        </div>
+                        <div class="modal-grid-item">
+                            <span class="modal-grid-label">Verified</span>
+                            <span class="modal-grid-value" style="color:#10b981;"><i class="fas fa-check-circle"></i> ID Verified</span>
+                        </div>
+                    </div>
+
+                    <div class="payment-box">
+                        <div class="payment-box-title">
+                            <i class="fas fa-lock"></i> ENCRYPTED PAYMENT
+                        </div>
+                        <div class="payment-box-desc">
+                            FEE: KSH 200 (Instant WhatsApp Unlock)
+                        </div>
+                    </div>
+
+                    <a href="index2.html" class="btn-unlock" id="modal-btn">
+                        <i class="fab fa-whatsapp"></i> Unlock WhatsApp Number
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Profile Data with all images, names, locations, and descriptions
+        const profiles = [
+            {
+                id: 1,
+                name: "Mercy Chepngetich",
+                age: 23,
+                location: "Kericho Town (CBD)",
+                image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600",
+                bio: "Quiet, loving, and down to earth. I work as a front desk officer at a local hotel. Looking for an honest man for a long-term commitment.",
+                online: true,
+                occupation: "Receptionist",
+                looking: "Serious Relationship",
+                status: "Single (No Kids)"
+            },
+            {
+                id: 2,
+                name: "Sharon Cherotich",
+                age: 25,
+                location: "Litein",
+                image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=600",
+                bio: "Self-employed fashion designer. I love outdoor activities, traveling around Kenya, and quiet Sunday evenings. Let's talk!",
+                online: true,
+                occupation: "Business Owner",
+                looking: "Marriage Minded",
+                status: "Single"
+            },
+            {
+                id: 3,
+                name: "Faith Chebet",
+                age: 22,
+                location: "Kapsoit",
+                image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=600",
+                bio: "Nursing student in Kericho. Very respectful, God-fearing, and loves cooking traditional Kalenjin dishes.",
+                online: false,
+                occupation: "Student",
+                looking: "Dating / Romance",
+                status: "Single"
+            },
+            {
+                id: 4,
+                name: "June Chepkorir",
+                age: 27,
+                location: "Brooke",
+                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=600",
+                bio: "Secondary school teacher. Looking for a mature man (30-45) who is financially stable and ready to settle down.",
+                online: true,
+                occupation: "Teacher",
+                looking: "Marriage",
+                status: "Single Mom (1 child)"
+            },
+            {
+                id: 5,
+                name: "Brenda Chelagat",
+                age: 24,
+                location: "Kipkelion",
+                image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&q=80&w=600",
+                bio: "Friendly, ambitious, and hardworking. I manage a tea farm business. Need someone who values hard work and family values.",
+                online: true,
+                occupation: "Agribusiness",
+                looking: "Serious Relationship",
+                status: "Single"
+            },
+            {
+                id: 6,
+                name: "Joy Chepkirui",
+                age: 21,
+                location: "Kericho Town",
+                image: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&q=80&w=600",
+                bio: "College student. I enjoy listening to music, watching movies, and long walks in the tea plantations.",
+                online: false,
+                occupation: "Student",
+                looking: "Casual Dating",
+                status: "Single"
+            }
+        ];
+
+        const recentMatches = [
+            { name: "John M.", girl: "Mercy", time: "12 mins ago", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150" },
+            { name: "Kiprono T.", girl: "Sharon", time: "28 mins ago", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150" },
+            { name: "David K.", girl: "June", time: "1 hour ago", img: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=150" },
+            { name: "Erick O.", girl: "Brenda", time: "2 hours ago", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150" }
+        ];
+
+        // Render Profiles
+        const container = document.getElementById('profiles-container');
+        profiles.forEach(p => {
+            const card = document.createElement('div');
+            card.className = 'profile-card';
+            card.onclick = () => openModal(p.id);
+
+            card.innerHTML = `
+                <div class="img-container">
+                    <img src="${p.image}" alt="${p.name}" loading="lazy">
+                    <div class="badge-verified"><i class="fas fa-check-circle"></i> ID Verified</div>
+                    <div class="badge-location"><i class="fas fa-map-marker-alt"></i> ${p.location}</div>
+                </div>
+                <div class="card-body">
+                    <div class="profile-header">
+                        <div class="profile-name">${p.name.split(' ')[0]}, <span class="profile-age">${p.age}</span></div>
+                        <span class="status-dot ${p.online ? 'status-online' : 'status-offline'}" title="${p.online ? 'Online Now' : 'Offline'}"></span>
+                    </div>
+                    <div class="profile-bio">${p.bio}</div>
+                    <div class="profile-details">
+                        <span><i class="fas fa-briefcase"></i> ${p.occupation}</span>
+                        <span><i class="fas fa-heart"></i> ${p.looking}</span>
+                    </div>
+                    <button class="btn-connect">
+                        <i class="fab fa-whatsapp"></i> Get Contact
+                    </button>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+
+        // Render Recent Matches
+        const matchesGrid = document.getElementById('matches-grid');
+        recentMatches.forEach(m => {
+            const mCard = document.createElement('div');
+            mCard.className = 'match-card';
+            mCard.innerHTML = `
+                <img src="${m.img}" alt="Match">
+                <span class="match-name">${m.name} + ${m.girl}</span>
+                <span class="match-time">${m.time}</span>
+            `;
+            matchesGrid.appendChild(mCard);
+        });
+
+        // Modal Functionality
+        const modal = document.getElementById('profile-modal');
+        const modalClose = document.getElementById('modal-close');
+
+        function openModal(id) {
+            const p = profiles.find(item => item.id === id);
+            if(!p) return;
+
+            document.getElementById('modal-img').src = p.image;
+            document.getElementById('modal-name-age').textContent = `${p.name}, ${p.age}`;
+            document.getElementById('modal-location').textContent = p.location;
+            document.getElementById('modal-bio').textContent = p.bio;
+            document.getElementById('modal-occupation').textContent = p.occupation;
+            document.getElementById('modal-looking').textContent = p.looking;
+            document.getElementById('modal-status').textContent = p.status;
+
+            modal.style.display = 'flex';
+        }
+
+        modalClose.onclick = () => {
+            modal.style.display = 'none';
+        };
+
+        window.onclick = (e) => {
+            if(e.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+
+        // Live Fake Toast Notifications
+        const toastMessages = [
+            "Kipkoech from Litein unlocked Mercy's contact!",
+            "Dennis from Kericho Town unlocked Sharon's contact!",
+            "New female profile registered in Kapsoit!",
+            "Robert unlocked Brenda's WhatsApp number!"
+        ];
+
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toast-msg');
+
+        function showRandomToast() {
+            const randomMsg = toastMessages[Math.floor(Math.random() * toastMessages.length)];
+            toastMsg.textContent = randomMsg;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        setInterval(showRandomToast, 12000);
+
+        // Fluctuate active men counter randomly for realism
+        const activeMenElem = document.getElementById('active-men');
+        setInterval(() => {
+            let current = parseInt(activeMenElem.textContent);
+            let change = Math.floor(Math.random() * 5) - 2;
+            let updated = current + change;
+            if(updated < 120) updated = 125;
+            if(updated > 180) updated = 175;
+            activeMenElem.textContent = updated;
+        }, 5000);
+    </script>
+</body>
+</html>
